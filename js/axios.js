@@ -2,8 +2,11 @@
 const runAxios = async () => {
     //CRIA ELEMENTO DE ESPERAR CARREGAR
     document.querySelector('#news').innerHTML = `<div class='p-3 mt-5'>
-                                                    <h3>Carregando </h3>
-                                                    <div class='spinner-grow text-success'></div> <div class='spinner-grow text-success'></div> <div class='spinner-grow text-success'></div>
+                                                    <h3>Carregando 
+                                                        <div class='spinner-grow text-success'></div>
+                                                        <div class='spinner-grow text-success'></div>
+                                                        <div class='spinner-grow text-success'></div>
+                                                    </h3>
                                                 </div>`;
     await dados();
 };
