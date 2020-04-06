@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <title>Portal</title>
+    <title>Repositorios</title>
 </head>
 
 <body>
@@ -20,43 +20,14 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs text-center" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#contact">Contatos</a>
+                    <input type="text" class="form-control form-control" onkeyup="search()"
+                        placeholder="Digite um repositorio GitHub">
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#news">Noticias</a>
-                </li>
+                <li class="nav-item active"><strong>Repositorios</strong></li>
             </ul>
 
             <!-- Tab panes -->
             <div class="tab-content text-center">
-                <div id="contact" class="container tab-pane "><br>
-                    <h3>Contatos</h3>
-                    <form class="rd-mailform text-left" data-form-output="form-output-global" data-form-type="contact"
-                        method="post" action="bat/rd-mailform.php" novalidate="novalidate">
-                        <div class="form-wrap form-wrap-validation has-error">
-                            <input class="form-input form-control-has-validation form-control-last-child" id="form-name"
-                                type="text" name="name" placeholder="Nome" data-constraints="@Required">
-                        </div>
-                        <div class="form-wrap form-wrap-validation">
-                            <input class="form-input form-control-has-validation form-control-last-child"
-                                id="form-email" type="email" name="email" placeholder="E-mail"
-                                data-constraints="@Email @Required"><span class="form-validation"></span>
-                        </div>
-                        <div class="form-wrap form-wrap-validation">
-                            <input class="form-input form-control-has-validation form-control-last-child"
-                                id="form-phone" type="text" name="phone" placeholder="Telefone"
-                                data-constraints="@Numeric @Required"><span class="form-validation"></span>
-                        </div>
-                        <div class="form-wrap form-wrap-validation">
-                            <textarea class="form-input form-control-has-validation form-control-last-child"
-                                id="form-message" name="message" placeholder="Mensagem..."
-                                data-constraints="@Required"></textarea><span class="form-validation"></span>
-                        </div>
-                        <div class="form-button">
-                            <button class="button button-primary" type="submit">Enviar</button>
-                        </div>
-                    </form>
-                </div>
                 <div class="text-centers tab-pane active mt-2 jusify-content-center" id="news">
                     <div class="py-3"><strong>Notícias</strong></div>
                     <div class="py-3"><i class="fas fa-4x fa-cogs"></i></div>

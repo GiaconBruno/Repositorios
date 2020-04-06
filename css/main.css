@@ -6,16 +6,19 @@ body {
     line-height: 1.5;
     color: #212529;
     text-align: left;
-    background-color: lightgray;
+    background-color: #27ae60;
 }
 
 .nav-item {
     width: 50%;
+    color: #212529;
+    background-color: white;
+    border-radius: 5px 5px 0 0;
+    line-height: 2.3;
 }
 
-.nav-link:not(.active) {
-    background-color: white;
-    opacity: 0.8;
+.nav-item:not(.active) {
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 #section-contact>.container {
@@ -70,13 +73,25 @@ form {
     text-decoration: none;
 }
 
+#news a:hover strong {
+    color: #27ae60;
+}
+
+#news a strong {
+    color: #2ecc71;
+}
+
+#news .text-justify {
+    color: #333
+}
+
 #news .news-bord {
     background-color: white;
     border-radius: 15px;
 }
 
 #news .news-bord:hover {
-    background-color: rgba(41, 128, 185, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 #news .conteudo {

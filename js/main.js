@@ -11,12 +11,3 @@ function position() {
     elem.style.right = posw + 'px';
     elem.style.bottom = ((height - 2) * -1) + 'vh';
 }
-setTimeout(function () {
-    document.querySelector('#dv1').classList = "spinner-grow text-success";
-}, 0);
-setTimeout(function () {
-    document.querySelector('#dv2').classList = "spinner-grow text-success";
-}, 100);
-setTimeout(function () {
-    document.querySelector('#dv3').classList = "spinner-grow text-success";
-}, 200);
