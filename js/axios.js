@@ -16,7 +16,7 @@ runAxios(); //EXECUTA FUNCAO ASSINCRONA
 function dados() {
     var cont = 0; //VARIAVEL CONTADOR
     var fullW = window.innerWidth;
-    axios.get('https://api.github.com/repositories')
+    axios.get('https://api.github.com/users/GiaconBruno/repos')
         .then(function (response) {
             //VARRE TODOS OS DADOS
             response.data.forEach(value => {
