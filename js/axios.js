@@ -23,7 +23,7 @@ const runAxios = async () => {
     }, 0);
     setTimeout(function () {
         document.querySelector('#dv2').classList = "spinner-grow text-success";
-    }, 100);
+    }, 125);
     setTimeout(function () {
         document.querySelector('#dv3').classList = "spinner-grow text-success";
     }, 200);
