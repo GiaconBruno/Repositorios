@@ -11,3 +11,4 @@ function position() {
     elem.style.right = posw + 'px';
     elem.style.bottom = ((height - 2) * -1) + 'vh';
 }
+document.querySelector('input').focus();

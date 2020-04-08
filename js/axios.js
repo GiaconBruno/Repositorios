@@ -1,7 +1,11 @@
 //CRIAR FUNCAO DE PESQUISAR
 var repos = "GiaconBruno";
+var tempo = null;
 function search() {
-    setTimeout(function () {
+    clearTimeout(tempo);
+    tempo = setTimeout(function () {
+        console.log(tempo);
+
         repos = document.querySelector('input').value;
         repos = (repos === "") ? "GiaconBruno" : repos;
         runAxios(); //EXECUTA FUNCAO ASSINCRONA
@@ -18,6 +22,7 @@ const runAxios = async () => {
                                                         <div id="dv3"></div>
                                                     </h3>
                                                 </div>`;
+    //CRIA SPINNERs COM DALEY
     setTimeout(function () {
         document.querySelector('#dv1').classList = "spinner-grow text-success";
     }, 0);
@@ -37,46 +42,48 @@ function dados() {
     var fullW = window.innerWidth;
     axios.get(`https://api.github.com/users/${repos}/repos`)
         .then(function (response) {
-            //VARRE TODOS OS DADOS
-            response.data.forEach(value => {
-                var { name, description, html_url, has_pages, owner: { avatar_url } } = value;
+            //VALIDA SE EXISTE
+            (response.status) !== 200 ? fail("Repositorio não encontrado!!") : response;
 
-                //REMOVER LINKS
-                var first = String(description).indexOf('http://');
-                var end = String(description).indexOf('.com');
-                var clear = String(description).slice(first, end + 4);
-                description = String(description).replace(clear, "");
+            if (response.status === 200) {
+                //VARRE TODOS OS DADOS
+                response.data.forEach(value => {
+                    var { name, description, html_url, has_pages, owner: { avatar_url } } = value;
 
-                var link = `https://${repos}.github.io/${name}`;
-                //VERIFICA SE EXISTE GIT-PAGES
-                has_pages == true ? link : link = html_url;
+                    // //REMOVER LINKS
+                    // var first = String(description).indexOf('http://');
+                    // var end = String(description).indexOf('.com');
+                    // var clear = String(description).slice(first, end + 4);
+                    // description = String(description).replace(clear, "");
 
-                //VERIFICA CONTEUDO MAIOR QUE O PERMITIDO
-                description === "null" ? description = "Sem descrição" : description;
-                if (fullW <= 1000) {
-                    if (description.length > 135) {
-                        description = description.substr(0, 135) + "...";
+                    var link = `https://${repos}.github.io/${name}`;
+                    //VERIFICA SE EXISTE GIT-PAGES
+                    has_pages == true ? link : link = html_url;
+
+                    //VERIFICA CONTEUDO MAIOR QUE O PERMITIDO
+                    description === null ? description = "Sem descrição" : description;
+
+                    if (fullW <= 1000) {
+                        (description.length > 200) ? description : description.substr(0, 200);
+                        (description.length <= 200) ? description : description.substr(0, 200) + "...";
                     } else {
-                        description = description.substr(0, 133);
+                        description = String(description).substr(0, 300);
                     }
-                } else {
-                    description = String(description).substr(0, 300);
-                }
 
-                //VERIFICA FIRST REGISTRO
-                const content = document.querySelector('#news');
-                (cont === 0) ? content.innerHTML = '' : content.innerHTML;
+                    //VERIFICA FIRST REGISTRO
+                    const content = document.querySelector('#news');
+                    (cont === 0) ? content.innerHTML = '' : content.innerHTML;
 
-                //CRIA ELEMENTO DIV
-                const div = document.createElement("div");
-                //DETERMINA QUE DIV EH ELEMENTO FILHO DE ELEMENTO #NEWS
-                content.appendChild(div);
+                    //CRIA ELEMENTO DIV
+                    const div = document.createElement("div");
+                    //DETERMINA QUE DIV EH ELEMENTO FILHO DE ELEMENTO #NEWS
+                    content.appendChild(div);
 
-                //CRIA CONTEUDO
-                const full = `<a href="${link}" target="_black">
+                    //CRIA CONTEUDO
+                    const full = `<a href="${link}" target="_black">
                                 <div class="news-bord m-2 text-left d-flex">
                                     <img class="p-2" src="${avatar_url}" />
-                                    <div class="text-left p-2 pr-3 conteudo">
+                                    <div class="text-left p-2 pr-3 conteudo text-break">
                                         <div>
                                             <h4><strong>${name}</strong></h4>
                                         </div>
@@ -86,27 +93,30 @@ function dados() {
                                     </div>
                                 </div>
                             </a > `;
-                //SALVA CONTEUDO DENTRO DO ELEMENTO DIV
-                div.innerHTML = full;
-                cont++;//PASSA CONTADOR
-            });
+                    //SALVA CONTEUDO DENTRO DO ELEMENTO DIV
+                    div.innerHTML = full;
+                    cont++;//PASSA CONTADOR
+                });
+            }
         })
         .catch(function (error) {
-            document.querySelector('#news').innerHTML = `<a href="#" target="_black">
-                                                            <div class="news-bord m-2 text-left d-flex">
-                                                                <img class="p-2"
-                                                                    src="https://avatars1.githubusercontent.com/u/62614331?s=460&u=e9aa99fd52f421775ce472ca665d8f089be5b3ad&v=4" />
-                                                                <div class="text-left p-2 pr-3 conteudo">
-                                                                    <div>
-                                                                        <h4><strong>Erro ao Carregar</strong></h4>
-                                                                    </div>
-                                                                    <div>
-                                                                        <p class="text-justify">${error}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>`
+            console.log(error);
         });
+}
+
+function fail(error) {
+    document.querySelector('#news').innerHTML = ` <div class="news-bord m-2 text-left d-flex">
+                                                    <img class="p-2"
+                                                        src="https://avatars1.githubusercontent.com/u/62614331?s=460&u=e9aa99fd52f421775ce472ca665d8f089be5b3ad&v=4" />
+                                                    <div class="text-left p-2 pr-3 conteudo">
+                                                        <div>
+                                                            <h4><strong>Erro ao Carregar</strong></h4>
+                                                        </div>
+                                                        <div>
+                                                            <p class="text-justify">${error}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>`
 }
 
 runAxios();

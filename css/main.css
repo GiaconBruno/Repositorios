@@ -9,12 +9,16 @@ body {
     background-color: #27ae60;
 }
 
-.nav-item {
-    width: 50%;
+.nav-item, .nav-box {
+    width: 30%;
     color: #212529;
     background-color: white;
     border-radius: 5px 5px 0 0;
     line-height: 2.3;
+}
+
+.nav-box {
+    width: 70%;
 }
 
 .nav-item:not(.active) {
@@ -26,29 +30,6 @@ body {
     color: white;
     width: 100%;
     height: 100vh;
-}
-
-form {
-    padding: 5vw;
-}
-
-#contact input, #contact textarea {
-    border-radius: 15px;
-    padding: 5px 10px;
-    margin: 10px 0;
-    width: 100%;
-}
-
-#contact button {
-    border: 2px solid white;
-    border-radius: 15px;
-    padding: 5px 30px;
-    background: transparent;
-    color: white;
-}
-
-#contact button:hover {
-    background: #00b6e6;
 }
 
 #news {
