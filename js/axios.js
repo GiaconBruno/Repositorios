@@ -42,9 +42,6 @@ function dados() {
     var fullW = window.innerWidth;
     axios.get(`https://api.github.com/users/${repos}/repos`)
         .then(function (response) {
-            //VALIDA SE EXISTE
-            (response.status) !== 200 ? fail("Repositorio não encontrado!!") : response;
-
             if (response.status === 200) {
                 //VARRE TODOS OS DADOS
                 response.data.forEach(value => {
@@ -100,7 +97,8 @@ function dados() {
             }
         })
         .catch(function (error) {
-            console.log(error);
+            //VALIDA SE EXISTE
+            (error.status) === 404 ? fail("Repositorio não encontrado!!") : fail(error);
         });
 }
 
