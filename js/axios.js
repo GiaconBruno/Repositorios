@@ -1,9 +1,10 @@
 //CRIAR FUNCAO DE PESQUISAR
 var repos = "GiaconBruno";
 var tempo = null;
+
 function search() {
     clearTimeout(tempo);
-    tempo = setTimeout(function () {
+    tempo = setTimeout(function() {
         console.log(tempo);
 
         repos = document.querySelector('input').value;
@@ -13,7 +14,7 @@ function search() {
 }
 
 //CRIA FUNCAO ASSINCRONA
-const runAxios = async () => {
+const runAxios = async() => {
     //CRIA ELEMENTO DE ESPERAR CARREGAR
     document.querySelector('#news').innerHTML = `<div class='p-3 mt-5'>
                                                     <h3>Carregando 
@@ -23,13 +24,13 @@ const runAxios = async () => {
                                                     </h3>
                                                 </div>`;
     //CRIA SPINNERs COM DALEY
-    setTimeout(function () {
+    setTimeout(function() {
         document.querySelector('#dv1').classList = "spinner-grow text-success";
     }, 0);
-    setTimeout(function () {
+    setTimeout(function() {
         document.querySelector('#dv2').classList = "spinner-grow text-success";
     }, 125);
-    setTimeout(function () {
+    setTimeout(function() {
         document.querySelector('#dv3').classList = "spinner-grow text-success";
     }, 200);
 
@@ -41,7 +42,7 @@ function dados() {
     var cont = 0; //VARIAVEL CONTADOR
     var fullW = window.innerWidth;
     axios.get(`https://api.github.com/users/${repos}/repos`)
-        .then(function (response) {
+        .then(function(response) {
             if (response.status === 200) {
                 //VARRE TODOS OS DADOS
                 response.data.forEach(value => {
@@ -61,15 +62,15 @@ function dados() {
                     description === null ? description = "Sem descrição" : description;
 
                     if (fullW <= 1000) {
-                        (description.length > 200) ? description : description.substr(0, 200);
-                        (description.length <= 200) ? description : description.substr(0, 200) + "...";
+                        (description.length > 200) ? description: description.substr(0, 200);
+                        (description.length <= 200) ? description: description.substr(0, 200) + "...";
                     } else {
                         description = String(description).substr(0, 300);
                     }
 
                     //VERIFICA FIRST REGISTRO
                     const content = document.querySelector('#news');
-                    (cont === 0) ? content.innerHTML = '' : content.innerHTML;
+                    (cont === 0) ? content.innerHTML = '': content.innerHTML;
 
                     //CRIA ELEMENTO DIV
                     const div = document.createElement("div");
@@ -92,13 +93,14 @@ function dados() {
                             </a > `;
                     //SALVA CONTEUDO DENTRO DO ELEMENTO DIV
                     div.innerHTML = full;
-                    cont++;//PASSA CONTADOR
+                    cont++; //PASSA CONTADOR
                 });
             }
         })
-        .catch(function (error) {
+        .catch(function(error) {
             //VALIDA SE EXISTE
-            (error.status) === 404 ? fail("Repositorio não encontrado!!") : fail(error);
+            console.log(error.message);
+            (error.message) === "Request failed with status code 404" ? fail("Repositorio não encontrado!!"): fail(error);
         });
 }
 
