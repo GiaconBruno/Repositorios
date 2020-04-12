@@ -10,7 +10,7 @@ function search() {
         repos = document.querySelector('input').value;
         repos = (repos === "") ? "GiaconBruno" : repos;
         runAxios(); //EXECUTA FUNCAO ASSINCRONA
-    }, 1000);
+    }, 200);
 }
 
 //CRIA FUNCAO ASSINCRONA
