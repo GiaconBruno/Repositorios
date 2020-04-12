@@ -5,8 +5,6 @@ var tempo = null;
 function search() {
     clearTimeout(tempo);
     tempo = setTimeout(function () {
-        console.log(tempo);
-
         repos = document.querySelector('input').value;
         repos = (repos === "") ? "GiaconBruno" : repos;
         runAxios(); //EXECUTA FUNCAO ASSINCRONA
