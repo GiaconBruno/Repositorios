@@ -8,7 +8,7 @@ function search() {
         repos = document.querySelector('input').value;
         repos = (repos === "") ? "GiaconBruno" : repos;
         runAxios(); //EXECUTA FUNCAO ASSINCRONA
-    }, 200);
+    }, 1000);
 }
 
 //CRIA FUNCAO ASSINCRONA
@@ -30,7 +30,7 @@ const runAxios = async () => {
     }, 125);
     setTimeout(function () {
         document.querySelector('#dv3').classList = "spinner-grow text-success";
-    }, 1000);
+    }, 200);
 
     await dados();
 };
